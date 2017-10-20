@@ -1,0 +1,72 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myBlogLabel">Create or edit a Blog</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!blog.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="blog.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_title">Title</label>
+            <input type="text" class="form-control" name="title" id="field_title"
+                [(ngModel)]="blog.title" required />
+            <div [hidden]="!(editForm.controls.title?.dirty && editForm.controls.title?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.title?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_blogPost">Blog Post</label>
+            <textarea class="form-control" name="blogPost" id="field_blogPost"
+                [(ngModel)]="blog.blogPost"  ></textarea>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_date">Date</label>
+            <div class="d-flex">
+                <input id="field_date" type="datetime-local" class="form-control" name="date" [(ngModel)]="blog.date"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_image">Image</label>
+            <div>
+                <img [src]="'data:' + blog.imageContentType + ';base64,' + blog.image" style="max-height: 100px;" *ngIf="blog.image" alt="blog image"/>
+                <div *ngIf="blog.image" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{blog.imageContentType}}, {{byteSize(blog.image)}}</span>
+                    <button type="button" (click)="clearInputImage('image', 'imageContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="file_image" (change)="setFileData($event, blog, 'image', true)" accept="image/*"/>
+            </div>
+            <input type="hidden" class="form-control" name="image" id="field_image"
+                [(ngModel)]="blog.image"  />
+            <input type="hidden" class="form-control" name="imageContentType" id="field_imageContentType"
+                [(ngModel)]="blog.imageContentType" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_author">Author</label>
+            <select class="form-control" id="field_author" name="author" [(ngModel)]="blog.author" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="authorOption.id === blog.author?.id ? blog.author : authorOption" *ngFor="let authorOption of authors; trackBy: trackAuthorById">{{authorOption.name}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

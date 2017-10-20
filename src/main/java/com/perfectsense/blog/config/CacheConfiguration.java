@@ -45,6 +45,11 @@ public class CacheConfiguration {
             cm.createCache(com.perfectsense.blog.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(com.perfectsense.blog.domain.User.class.getName() + ".authorities", jcacheConfiguration);
             cm.createCache(com.perfectsense.blog.domain.SocialUserConnection.class.getName(), jcacheConfiguration);
+            cm.createCache(com.perfectsense.blog.domain.Blog.class.getName(), jcacheConfiguration);
+            cm.createCache(com.perfectsense.blog.domain.Blog.class.getName() + ".comments", jcacheConfiguration);
+            cm.createCache(com.perfectsense.blog.domain.Comment.class.getName(), jcacheConfiguration);
+            cm.createCache(com.perfectsense.blog.domain.Author.class.getName(), jcacheConfiguration);
+            cm.createCache(com.perfectsense.blog.domain.Author.class.getName() + ".blogs", jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

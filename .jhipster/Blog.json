@@ -1,0 +1,46 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "comment",
+            "otherEntityName": "comment",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "blog"
+        },
+        {
+            "relationshipName": "author",
+            "otherEntityName": "author",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "title",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "blogPost",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        },
+        {
+            "fieldName": "date",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "image",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        }
+    ],
+    "changelogDate": "20171019025309",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "blog",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

@@ -1,0 +1,33 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "blog",
+            "otherEntityName": "blog",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "author"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "bio",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        },
+        {
+            "fieldName": "image",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        }
+    ],
+    "changelogDate": "20171019025837",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "author",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}

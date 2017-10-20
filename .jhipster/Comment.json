@@ -1,0 +1,28 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "blog",
+            "otherEntityName": "blog",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "date",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "comment",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        }
+    ],
+    "changelogDate": "20171019025502",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "comment",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}
